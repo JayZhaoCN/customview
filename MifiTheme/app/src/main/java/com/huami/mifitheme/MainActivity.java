@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setTheme(R.style.WindowBase_LightGreenDeepOrangeTheme);
+        setTheme(R.style.WindowBase_BrownDeepOrangeTheme);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             replaceFragment(ImageViewFragment.newInstance());
         } else if (id == R.id.nav_image_button) {
             replaceFragment(ImageButtonFragment.newInstance());
-        } else if (id == R.id.nav_radio_button) {
+        } else if (id == R.id.nav_switcher) {
             replaceFragment(SwitcherFragment.newInstance());
         } else if (id == R.id.nav_share) {
 

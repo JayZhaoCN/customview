@@ -1,7 +1,7 @@
 <resources>
 
     <style name="WindowBase.BlueGreyCyanTheme">
-        <item name="actionBarColor">@color/actionBarColor</item>
+        <item name="actionBarColor">@color/action_bar_color</item>
 
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>

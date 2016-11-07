@@ -25,13 +25,9 @@
                     android:icon="@drawable/ic_menu_slideshow"
                     android:title="ImageButton" />
                 <item
-                    android:id="@+id/nav_radio_button"
+                    android:id="@+id/nav_switcher"
                     android:icon="@drawable/ic_menu_manage"
-                    android:title="RadioButton" />
-                <item
-                    android:id="@+id/nav_check_box"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="CheckBox" />
+                    android:title="switchButton" />
                 <item
                     android:id="@+id/nav_list_view"
                     android:icon="@drawable/ic_menu_manage"

@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="WindowBase.BrownDeepOrangeTheme">
+        <item name="colorPrimary">@color/primary_brown_deep_orange</item>
+        <item name="colorPrimaryDark">@color/primary_dark_brown_deep_orange</item>
+        <item name="colorAccent">@color/accent_brown_deep_orange</item>
+    </style>
+
+
+
+</resources>

@@ -1,0 +1,126 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_vertical_margin"
+    android:theme="@style/Layout"
+    tools:context="com.huami.mifitheme.fragment.TextViewFragment">
+
+    <TextView
+        style="@style/TextView.TitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="本周计划：" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="篮球" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="足球" />
+
+        <RadioButton
+            style="@style/TextView.ContentText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="乒乓球" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/switcher_tint"
+            android:text="羽毛球" />
+    </RadioGroup>
+
+    <TextView
+        style="@style/TextView.TitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="支出：" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/switcher_tint"
+            android:text="水费" />
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/switcher_tint"
+            android:text="电费" />
+
+        <CheckBox
+            style="@style/TextView.ContentText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:buttonTint="@color/switcher_tint"
+            android:text="话费" />
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:buttonTint="@color/switcher_tint"
+            android:text="煤气费" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextView.TitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="爱好：" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/switcher_tint"
+            android:textOff="off"
+            android:textOn="on" />
+    </LinearLayout>
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checkMarkTint="@color/switcher_tint"
+        android:checked="true"
+        android:gravity="center_vertical"
+        android:text="CheckedTextView" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        style="@style/Widget.AppCompat.DrawerArrowToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/drawable_light_tint"
+        android:buttonTint="@color/switcher_tint"
+        android:text="ToggleButton" />
+
+</LinearLayout>

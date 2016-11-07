@@ -1,0 +1,8 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+将删除 .idea/vcs.xml

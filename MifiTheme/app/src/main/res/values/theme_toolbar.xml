@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--每个控件theme都不能直接从根这一层继承，如果继承了将使用系统的样式-->
+
+    <style name="ToolbarTextAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+
+    <style name="ToolbarTextAppearance.MainToolbar">
+        <item name="android:textColor">?attr/textSecondaryColor</item>
+        <item name="android:textSize">?attr/textSizeXXLarge</item>
+    </style>
+</resources>

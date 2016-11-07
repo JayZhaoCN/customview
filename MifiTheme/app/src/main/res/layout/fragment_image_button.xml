@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_vertical_margin"
+    android:theme="@style/Layout"
+    tools:context="com.huami.mifitheme.fragment.ImageViewFragment">
+
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imb_button1"
+        style="@style/Button.NormalReverse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scaleType="centerInside"
+        android:src="?attr/icMenuDrawable1" />
+
+    <ImageButton
+        android:id="@+id/imb_button2"
+        style="@style/Button.NormalReverse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scaleType="centerInside"
+        android:src="?attr/icMenuDrawable2"/>
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imb_button3"
+        style="@style/Button.Normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scaleType="centerInside"
+        android:src="?attr/icMenuDrawable3" />
+
+    <ImageButton
+        android:id="@+id/imb_button4"
+        style="@style/Button.Normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scaleType="centerInside"
+        android:src="?attr/icMenuDrawable4"/>
+
+</LinearLayout>

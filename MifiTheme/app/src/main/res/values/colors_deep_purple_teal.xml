@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="primary_deep_purple_teal">#673AB7</color>
+  <color name="primary_dark_deep_purple_teal">#512DA8</color>
+  <color name="primary_light_deep_purple_teal">#D1C4E9</color>
+  <color name="accent_deep_purple_teal">#009688</color>
+  <color name="primary_text_deep_purple_teal">#212121</color>
+  <color name="secondary_text_deep_purple_teal">#757575</color>
+  <color name="icons_deep_purple_teal">#FFFFFF</color>
+  <color name="divider_deep_purple_teal">#BDBDBD</color>
+</resources>

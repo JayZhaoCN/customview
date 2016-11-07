@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="primary_brown_deep_orange">#795548</color>
+  <color name="primary_dark_brown_deep_orange">#5D4037</color>
+  <color name="primary_light_brown_deep_orange">#D7CCC8</color>
+  <color name="accent_brown_deep_orange">#FF5722</color>
+  <color name="primary_text_brown_deep_orange">#212121</color>
+  <color name="secondary_text_brown_deep_orange">#757575</color>
+  <color name="icons_brown_deep_orange">#FFFFFF</color>
+  <color name="divider_brown_deep_orange">#BDBDBD</color>
+</resources>

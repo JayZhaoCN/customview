@@ -1,0 +1,12 @@
+<resources>
+
+
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="WindowBase.BlueGreyCyanTheme">
+        <!--是否使用沉浸式状态栏-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+    </style>
+
+</resources>

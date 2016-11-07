@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--每个控件theme都不能直接从根这一层继承，如果继承了将使用系统的样式-->
+
+    <style name="TextView" parent="@android:style/Widget.Material.TextView" />
+
+
+</resources>

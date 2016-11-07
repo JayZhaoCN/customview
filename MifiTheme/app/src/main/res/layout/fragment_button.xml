@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_vertical_margin"
+    android:theme="@style/Layout"
+    tools:context="com.huami.mifitheme.fragment.ButtonFragment">
+
+    <Button
+        android:id="@+id/btn_small"
+        style="@style/Button.Small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Button.Small" />
+
+    <Button
+        android:id="@+id/btn_normal"
+        style="@style/Button.Normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Button.Normal" />
+
+    <Button
+        android:id="@+id/btn_normal_reverse"
+        style="@style/Button.NormalReverse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Button.NormalReverse" />
+
+    <Button
+        android:id="@+id/btn_large"
+        style="@style/Button.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Button.Large" />
+
+    <Button
+        android:id="@+id/btn_circle"
+        style="@style/Button.Circle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Button.Circle" />
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.jay.customview;
+package com.jay.customview.utils;
 
 /**
  * Created by Jay on 2016/11/8.

@@ -1,9 +1,9 @@
-package com.jay.customview;
+package com.jay.customview.utils;
 
 import android.app.Activity;
-import android.os.Build;
 import android.view.Window;
-import android.view.WindowManager;
+
+import com.jay.customview.utils.BuildProperties;
 
 import java.io.IOException;
 import java.lang.reflect.Field;

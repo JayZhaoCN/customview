@@ -1,12 +1,6 @@
 <resources>
-    <string name="app_name">MX</string>
+    <string name="app_name">CustomView</string>
     <string name="my_app">MyApp</string>
-    <string name="input_url">输入网址</string>
-    <string name="get">Get</string>
-    <string name="post">Post</string>
-    <string name="upload_file">Upload File</string>
-    <string name="download_file">Download File</string>
-    <string name="start">Start</string>
 
     <string-array name="function_1">
         <item>Test About Custom View</item>
@@ -16,5 +10,15 @@
         <item>OkHttpTest</item>
     </string-array>
 
+    <string-array name="custom_progressbar_styles">
+        <item>SingleColor</item>
+        <item>MultiColor</item>
+        <item>GradualColor</item>
+    </string-array>
+
+    <string-array name="custom_progressbar_types">
+        <item>MOVABLE</item>
+        <item>UNMOVABLE</item>
+    </string-array>
 
 </resources>

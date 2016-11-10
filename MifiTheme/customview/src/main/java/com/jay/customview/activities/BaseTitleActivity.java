@@ -1,20 +1,27 @@
-package com.jay.customview;
+package com.jay.customview.activities;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.jay.customview.R;
+import com.jay.customview.utils.Utils;
 
 /**
  * Created by Jay on 2016/4/7.
@@ -32,6 +39,8 @@ public class BaseTitleActivity extends FragmentActivity {
     private RelativeLayout mTitle;
     private View mStatusView;
     private ViewGroup mTitleParent;
+
+    private ValueAnimator mColorAnimator;
 
     //默认的风格是BACK_AND_MORE
     private STYLE mStyle = STYLE.BACK_AND_MORE;
@@ -163,6 +172,32 @@ public class BaseTitleActivity extends FragmentActivity {
     public void setStyle(STYLE style, int color) {
         setStyle(style);
         setColor(color);
+    }
+
+    public void initAnimator() {
+        if(mColorAnimator == null) {
+            //invoke ValueAnimator.ofArgb(int ...values) to do some animation of colors
+            mColorAnimator = ValueAnimator.ofInt(ContextCompat.getColor(this, R.color.colorPrimary),
+                    ContextCompat.getColor(this, R.color.fat_color),
+                    ContextCompat.getColor(this, R.color.bg_color_red),
+                    ContextCompat.getColor(this, R.color.bg_color_blue_dark),
+                    ContextCompat.getColor(this, R.color.fragment_divider_color));
+
+            mColorAnimator.setEvaluator(new ArgbEvaluator());
+            mColorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                int currentColor;
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    currentColor = (int) animation.getAnimatedValue();
+                    setColorValue(currentColor);
+                }
+            });
+            mColorAnimator.setRepeatCount(ValueAnimator.INFINITE);
+            mColorAnimator.setDuration(20000);
+            mColorAnimator.setRepeatMode(ValueAnimator.REVERSE);
+            mColorAnimator.setInterpolator(new LinearInterpolator());
+            mColorAnimator.start();
+        }
     }
 
     /**

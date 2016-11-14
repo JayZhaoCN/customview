@@ -56,4 +56,12 @@ public class CustomTypefaceBuilder {
     public SpannableStringBuilder build() {
         return mBuilder;
     }
+
+    /**
+     * 清除设置
+     */
+    public void clear() {
+        mBuilder.clear();
+        mIndex = 0;
+    }
 }

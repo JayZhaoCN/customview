@@ -178,8 +178,7 @@ public class BaseTitleActivity extends FragmentActivity {
         if(mColorAnimator == null) {
             //invoke ValueAnimator.ofArgb(int ...values) to do some animation of colors
             mColorAnimator = ValueAnimator.ofInt(ContextCompat.getColor(this, R.color.colorPrimary),
-                    ContextCompat.getColor(this, R.color.fat_color),
-                    ContextCompat.getColor(this, R.color.bg_color_red),
+                    ContextCompat.getColor(this, R.color.colorAccent),
                     ContextCompat.getColor(this, R.color.bg_color_blue_dark),
                     ContextCompat.getColor(this, R.color.fragment_divider_color));
 
@@ -193,7 +192,7 @@ public class BaseTitleActivity extends FragmentActivity {
                 }
             });
             mColorAnimator.setRepeatCount(ValueAnimator.INFINITE);
-            mColorAnimator.setDuration(20000);
+            mColorAnimator.setDuration(30000);
             mColorAnimator.setRepeatMode(ValueAnimator.REVERSE);
             mColorAnimator.setInterpolator(new LinearInterpolator());
             mColorAnimator.start();

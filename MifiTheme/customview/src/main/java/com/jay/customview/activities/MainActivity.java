@@ -8,6 +8,7 @@ import android.view.View;
 import com.jay.customview.R;
 import com.jay.customview.fragments.BaseFragment;
 import com.jay.customview.fragments.CustomProgressBarFragment;
+import com.jay.customview.fragments.CustomTypefaceFragment;
 import com.jay.customview.widgets.MyAlertDialog;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
 
         mDatas = new ArrayList<>();
         mDatas.add("CustomProgressBar");
-        mDatas.add("to be done");
+        mDatas.add("CustomTypeface");
         mDatas.add("to be done");
         mDatas.add("to be done");
         mDatas.add("to be done");
@@ -68,6 +69,12 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
                     FragmentManager manager = MainActivity.this.getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction fragmentTransaction = manager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, mBaseFragment = new CustomProgressBarFragment());
+                    fragmentTransaction.commit();
+                    dialog.dismiss();
+                } else if(mDatas.get(position).equals("CustomTypeface")) {
+                    FragmentManager manager = MainActivity.this.getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, mBaseFragment = new CustomTypefaceFragment());
                     fragmentTransaction.commit();
                     dialog.dismiss();
                 } else if(mDatas.get(position).equals("to be done")) {

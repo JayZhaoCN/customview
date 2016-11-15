@@ -1,10 +1,15 @@
 package com.jay.customview.activities;
 
 import android.app.Dialog;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+
 import com.jay.customview.R;
 import com.jay.customview.fragments.BaseFragment;
 import com.jay.customview.fragments.CustomProgressBarFragment;
@@ -79,6 +84,12 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
                     fragmentTransaction.commit();
                     dialog.dismiss();
                 } else if(mDatas.get(position).equals("Tint")) {
+                    if(mBaseFragment != null && mBaseFragment instanceof TintFragment) {
+                        //already added
+                        Log.i(TAG, "TintFragment already added!");
+                        dialog.dismiss();
+                        return;
+                    }
                     FragmentManager manager = MainActivity.this.getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction fragmentTransaction = manager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, mBaseFragment = new TintFragment());

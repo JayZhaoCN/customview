@@ -1,6 +1,8 @@
 package com.jay.customview.fragments;
 
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -25,32 +27,46 @@ public class TintFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
+        Log.i(TAG, "onCreateView");
 
         /*
         if(view != null) {
-            *//**
-             * 如何在代码中使用Tint
-             *//*
+            //使用Drawable.mutate()方法可以避免Drawable实例被关联修改的问题。
+            //如果直接使用drawable设置tint，第一次打开应用，两个imageView似乎并不会出现同时被修改的情况。
+            //但第二次打开应用，就会出现上述问题。
+
             ImageView image1 = (ImageView) view.findViewById(R.id.image1);
-            ImageView image2 = (ImageView) view.findViewById(R.id.image2);
+            //ImageView image2 = (ImageView) view.findViewById(R.id.image2);
 
             //两个ImageView引用的是同一个drawable资源，系统为了优化资源，在内存中只保存了一份drawable拷贝
             //修改drawable会导致两个imageView同时被修改
-            Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.icon_status_weight);
-            image2.setImageDrawable(drawable);
+            Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.step_new_record);
             //使用Drawable.mutate()避免这一问题
-            DrawableCompat.setTint(drawable.mutate(), ContextCompat.getColor(getActivity(), R.color.personinfo_color_yellow));
+            DrawableCompat.setTint(drawable.mutate(), ContextCompat.getColor(getActivity(), R.color.bg_color_steps));
             image1.setImageDrawable(drawable);
-
-            //Drawable.ConstantState state = drawable.getConstantState();
-            //Log.i(TAG, "state is null: " + (state == null));
-            //Drawable drawable1 = DrawableCompat.wrap(state == null ? drawable : state.newDrawable()).mutate();
-            //drawable1.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-            //DrawableCompat.setTint(drawable1, ContextCompat.getColor(getActivity(), R.color.personinfo_color_yellow));
-            //image1.setImageDrawable(drawable1);
-            //image2.setImageDrawable(drawable1);
         }
         */
+
+
+        //代码设置selector tint，6.0以下可以使用
+        if(view != null) {
+            ImageView imageView = (ImageView) view.findViewById(R.id.image1);
+            Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.step_new_record);
+            int[] colors = new int[]{ContextCompat.getColor(getActivity(), R.color.blue_light), ContextCompat.getColor(getActivity(), R.color.bg_color_red)};
+            int[][] states = new int[2][];
+            states[0] = new int[]{android.R.attr.state_pressed};
+            states[1] = new int[]{};
+            ColorStateList colorList = new ColorStateList(states, colors);
+            StateListDrawable stateListDrawable = new StateListDrawable();
+            stateListDrawable.addState(states[0], drawable);
+            stateListDrawable.addState(states[1], drawable);
+            Drawable.ConstantState state = stateListDrawable.getConstantState();
+            drawable = DrawableCompat.wrap(state == null ? stateListDrawable : state.newDrawable()).mutate();
+            DrawableCompat.setTintList(drawable, colorList);
+            imageView.setImageDrawable(drawable);
+        }
+
+
         return view;
     }
 

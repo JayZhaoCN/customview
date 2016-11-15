@@ -64,6 +64,7 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
             @Override
             public void onClick(int position) {
                 Log.i(TAG, "position is: " + position);
+                setTitle(mDatas.get(position));
                 if(mDatas.get(position).equals("CustomProgressBar")) {
                     if(mBaseFragment != null && mBaseFragment instanceof CustomProgressBarFragment) {
                         //already added
@@ -71,7 +72,6 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
                         dialog.dismiss();
                         return;
                     }
-                    setTitle(mDatas.get(position));
                     FragmentManager manager = MainActivity.this.getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction fragmentTransaction = manager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, mBaseFragment = new CustomProgressBarFragment());

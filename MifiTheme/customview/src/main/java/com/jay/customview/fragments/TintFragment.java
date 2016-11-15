@@ -47,6 +47,9 @@ public class TintFragment extends BaseFragment {
         }
         */
 
+        //总结：ImageView的tint属性，在4.0.3上就开始支持，但只支持单色的tint
+        //5.0之后，可以支持colorlist。
+        //DrawableCompat类：是Drawable的向下兼容类，为了在6.0以下兼容tint属性而使用的。
 
         //代码设置selector tint，6.0以下可以使用
         if(view != null) {

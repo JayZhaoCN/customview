@@ -3,6 +3,7 @@
     <string name="my_app">MyApp</string>
     <string name="xml_selector_tint">xml设置selector tint，6.0以下会崩溃\n（实际测试，5.1手机也可以完美运行）</string>
     <string name="code_selector_tint">代码设置selector tint</string>
+    <string name="material_design">Material Design</string>
 
     <string-array name="function_1">
         <item>Test About Custom View</item>

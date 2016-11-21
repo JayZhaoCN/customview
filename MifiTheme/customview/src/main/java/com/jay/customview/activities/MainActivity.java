@@ -1,17 +1,15 @@
 package com.jay.customview.activities;
 
 import android.app.Dialog;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.jay.customview.R;
 import com.jay.customview.fragments.BaseFragment;
+import com.jay.customview.fragments.CardViewFragment;
 import com.jay.customview.fragments.CustomProgressBarFragment;
 import com.jay.customview.fragments.CustomTypefaceFragment;
 import com.jay.customview.fragments.TintFragment;
@@ -40,7 +38,7 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
         mDatas.add("CustomProgressBar");
         mDatas.add("CustomTypeface");
         mDatas.add("Tint");
-        mDatas.add("to be done");
+        mDatas.add("CardView");
         mDatas.add("to be done");
     }
 
@@ -72,16 +70,10 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
                         dialog.dismiss();
                         return;
                     }
-                    FragmentManager manager = MainActivity.this.getSupportFragmentManager();
-                    android.support.v4.app.FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, mBaseFragment = new CustomProgressBarFragment());
-                    fragmentTransaction.commit();
+                    replaceFragment(new CustomProgressBarFragment());
                     dialog.dismiss();
                 } else if(mDatas.get(position).equals("CustomTypeface")) {
-                    FragmentManager manager = MainActivity.this.getSupportFragmentManager();
-                    android.support.v4.app.FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, mBaseFragment = new CustomTypefaceFragment());
-                    fragmentTransaction.commit();
+                    replaceFragment(new CustomTypefaceFragment());
                     dialog.dismiss();
                 } else if(mDatas.get(position).equals("Tint")) {
                     if(mBaseFragment != null && mBaseFragment instanceof TintFragment) {
@@ -90,18 +82,36 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
                         dialog.dismiss();
                         return;
                     }
-                    FragmentManager manager = MainActivity.this.getSupportFragmentManager();
-                    android.support.v4.app.FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, mBaseFragment = new TintFragment());
-                    fragmentTransaction.commit();
+                    replaceFragment(new TintFragment());
+                    dialog.dismiss();
+                } else if(mDatas.get(position).equals("CardView")) {
+                    if(mBaseFragment != null && mBaseFragment instanceof CardViewFragment) {
+                        //already added
+                        Log.i(TAG, "TintFragment already added!");
+                        dialog.dismiss();
+                        return;
+                    }
+                    replaceFragment(new CardViewFragment());
                     dialog.dismiss();
                 } else if(mDatas.get(position).equals("to be done")) {
                     Log.i(TAG, "item to be done");
+                    FragmentManager manager = MainActivity.this.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                    fragmentTransaction.remove(mBaseFragment);
+                    fragmentTransaction.commit();
                     dialog.dismiss();
                 }
             }
         });
 
         dialog.show();
+    }
+
+    private void replaceFragment(BaseFragment fragment) {
+        FragmentManager manager = MainActivity.this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, mBaseFragment = fragment);
+        fragmentTransaction.replace(R.id.fragment_container, mBaseFragment = fragment);
+        fragmentTransaction.commit();
     }
 }

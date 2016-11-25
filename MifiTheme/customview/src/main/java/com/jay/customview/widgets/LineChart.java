@@ -2,7 +2,9 @@ package com.jay.customview.widgets;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -68,6 +70,8 @@ public class LineChart extends View {
 
     //y轴刻度文字所在的矩形
     private List<Rect> mYScaleTargetRects;
+
+    private int titleheight = 100;
 
     //各种颜色
     private int mXScaleTextColor = 0xFF1674E9;
@@ -188,6 +192,9 @@ public class LineChart extends View {
 
         //draw value point and lines
         drawAllPointAndLines(canvas);
+
+        //draw dialog
+        drawDialog(canvas, mSelectedIndex);
     }
 
     private void drawYScaleText(Canvas canvas) {
@@ -206,18 +213,48 @@ public class LineChart extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
                 int index;
-                if ((index = judgeTouchArea(event.getX(), event.getY())) != -1) {
-                    mSelectedIndex = index;
-                    invalidate();
+                if(event.getY() > mHeight - mXScaleHeight) {
+                    Log.i(TAG, "XScaleArea");
+                    if ((index = judgeTouchArea(event.getX(), event.getY())) != -1) {
+                        mSelectedIndex = index;
+                        invalidate();
+                    }
+                } else {
+                    Log.i(TAG, "ChartArea");
+                    if((index = judgeChartPointTouchArea(event.getX(), event.getY())) != -1) {
+                        mSelectedIndex = index;
+                        invalidate();
+                    }
                 }
                 break;
         }
         return true;
     }
 
+    private int judgeChartPointTouchArea(float x, float y) {
+        Rect rect = new Rect();
+        for(int i=0; i<mValues.length; i++) {
+            Point point = calculateLocation(i, mValues[i]);
+            rect.left = point.x - 35;
+            rect.right = point.x + 35;
+            rect.top = point.y - 35;
+            rect.bottom = point.y + 35;
+            if(rect.contains((int)x, (int)y)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     private int judgeTouchArea(float x, float y) {
+        Rect rect;
         for (int i = 0; i < mXScaleTexts.length; i++) {
-            if (getXScaleTouchArea(mXScaleTexts[i], i).contains((int) x, (int) y)) {
+            rect = new Rect(getXScaleTouchArea(mXScaleTexts[i], i));
+            rect.left -= 10;
+            rect.right += 10;
+            rect.top -= 10;
+            rect.bottom += 10;
+            if (rect.contains((int) x, (int) y)) {
                 return i;
             }
         }
@@ -268,10 +305,10 @@ public class LineChart extends View {
     }
 
     private void drawAllPointAndLines(Canvas canvas) {
-        Point originPoint = caculateLocation(0, mValues[0]);
+        Point originPoint = calculateLocation(0, mValues[0]);
 
         for (int i = 0; i < mXScaleTexts.length; i++) {
-            Point point = caculateLocation(i, mValues[i]);
+            Point point = calculateLocation(i, mValues[i]);
             if (point.y == 0) {
                 point.y += 8;
             }
@@ -283,13 +320,59 @@ public class LineChart extends View {
         }
     }
 
+    private void drawDialog(Canvas canvas, int i) {
+        int dialogWidth = mMaxYScaleWidth / 2;
+        Point bottomPoint = calculateLocation(i, mValues[i]);
+        Path path = new Path();
+        if(mValues[i] != mMaxValue) {
+            bottomPoint.y -= 8;
+            path.moveTo(bottomPoint.x, bottomPoint.y);
+            path.lineTo(bottomPoint.x + 15, bottomPoint.y - 20);
+            path.lineTo(bottomPoint.x + 15 + dialogWidth, bottomPoint.y - 20);
+            path.lineTo(bottomPoint.x + 15 + dialogWidth, bottomPoint.y - 20 - 35);
+            path.lineTo(bottomPoint.x - 15 - dialogWidth, bottomPoint.y - 20 - 35);
+            path.lineTo(bottomPoint.x - 15 - dialogWidth, bottomPoint.y - 20);
+            path.lineTo(bottomPoint.x - 15, bottomPoint.y - 20);
+            path.close();
+        } else {
+            bottomPoint.y += 8;
+            path.moveTo(bottomPoint.x, bottomPoint.y);
+            path.lineTo(bottomPoint.x + 15, bottomPoint.y + 20);
+            path.lineTo(bottomPoint.x + 15 + dialogWidth, bottomPoint.y + 20);
+            path.lineTo(bottomPoint.x + 15 + dialogWidth, bottomPoint.y + 20 + 35);
+            path.lineTo(bottomPoint.x - 15 - dialogWidth, bottomPoint.y + 20 + 35);
+            path.lineTo(bottomPoint.x - 15 - dialogWidth, bottomPoint.y + 20);
+            path.lineTo(bottomPoint.x - 15, bottomPoint.y + 20);
+            path.close();
+        }
+        canvas.drawPath(path, mValuePointPaint);
+
+        Rect rect = new Rect();
+        if(mValues[i] != mMaxValue) {
+            rect.left = bottomPoint.x - 15 - dialogWidth;
+            rect.right = bottomPoint.x + 15 + dialogWidth;
+            rect.top = bottomPoint.y - 20 - 35;
+            rect.bottom = bottomPoint.y - 20;
+        } else {
+            rect.left = bottomPoint.x - 15 - dialogWidth;
+            rect.right = bottomPoint.x + 15 + dialogWidth;
+            rect.top = bottomPoint.y + 20 + 35;
+            rect.bottom = bottomPoint.y + 20;
+        }
+        mYScaleTextPaint.setTextAlign(Paint.Align.CENTER);
+        mYScaleTextPaint.setColor(Color.WHITE);
+        canvas.drawText(String.valueOf(mValues[i]), rect.left + rect.width() / 2, (rect.bottom + rect.top - mYScaleFontMetrics.bottom - mYScaleFontMetrics.top) / 2, mYScaleTextPaint);
+        mYScaleTextPaint.setTextAlign(Paint.Align.RIGHT);
+        mYScaleTextPaint.setColor(mXScaleTextColor);
+    }
+
     /**
-     * caculate the location of a value
+     * calculate the location of a value
      *
      * @param xIndex x轴刻度位置
      * @param value 值
      */
-    private Point caculateLocation(int xIndex, int value) {
+    private Point calculateLocation(int xIndex, int value) {
         float yScale = (float) (mHeight - mXScaleHeight - mPointSuspendX) / (float) (mMaxValue - mMinValue);
         int yLocation = (int) ((mMaxValue - value) * yScale);
         int xLocation = mYScaleWidth + mXScaleWidth * xIndex + mXScaleWidth / 2;

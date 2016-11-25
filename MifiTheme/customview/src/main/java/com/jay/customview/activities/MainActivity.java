@@ -12,6 +12,7 @@ import com.jay.customview.fragments.BaseFragment;
 import com.jay.customview.fragments.CardViewFragment;
 import com.jay.customview.fragments.CustomProgressBarFragment;
 import com.jay.customview.fragments.CustomTypefaceFragment;
+import com.jay.customview.fragments.LineChartFragment;
 import com.jay.customview.fragments.TintFragment;
 import com.jay.customview.widgets.MyAlertDialog;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
         mDatas.add("CustomTypeface");
         mDatas.add("Tint");
         mDatas.add("CardView");
-        mDatas.add("to be done");
+        mDatas.add("LineChart");
     }
 
     @Override
@@ -93,12 +94,13 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
                     }
                     replaceFragment(new CardViewFragment());
                     dialog.dismiss();
-                } else if(mDatas.get(position).equals("to be done")) {
-                    Log.i(TAG, "item to be done");
-                    FragmentManager manager = MainActivity.this.getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                    fragmentTransaction.remove(mBaseFragment);
-                    fragmentTransaction.commit();
+                } else if(mDatas.get(position).equals("LineChart")) {
+                   if(mBaseFragment != null && mBaseFragment instanceof LineChartFragment) {
+                       Log.i(TAG, "LineChartFragment already added!");
+                       dialog.dismiss();
+                       return;
+                   }
+                    replaceFragment(new LineChartFragment());
                     dialog.dismiss();
                 }
             }

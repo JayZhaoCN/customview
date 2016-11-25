@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <!--
+
     <TextView
         android:text="@string/xml_selector_tint"
         android:id="@+id/image2_text"
@@ -35,6 +35,5 @@
         android:src="@drawable/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    -->
 
 </LinearLayout>

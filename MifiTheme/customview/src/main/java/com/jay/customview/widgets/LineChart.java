@@ -39,12 +39,12 @@ public class LineChart extends View {
     private Paint mYScaleTextPaint;
     private Paint mLinesPaint;
 
-    private String[] mXScaleTexts = {"一月", "二月", "三月", "四月", "五月", "六月"};
+    private String[] mXScaleTexts = {"一月", "二月", "三月", "四月", "五月", "六月", "七月"};
     //选中的项
     private int mSelectedIndex = 1;
 
-    private int[] mValues = {10, 210, 190, 198, 450, 78};
-    private int mMaxValue = 450;
+    private int[] mValues = {10, 210, 190, 198, 450, 78, 189};
+    private int mMaxValue = 500;
     private int mMinValue = 10;
 
     private Paint.FontMetricsInt mXScaleFontMetrics;
@@ -103,16 +103,17 @@ public class LineChart extends View {
     }
 
     private List<String> mYScaleTexts;
+    private float mPerValue;
 
     private int initYScaleTexts() {
-        float perValue = (float) (mMaxValue - mMinValue) / (float) mYScaleNum;
+        mPerValue = (float) (mMaxValue - mMinValue) / (float) mYScaleNum;
 
         mYScaleTexts = new ArrayList<>();
         String text;
         Rect rect = new Rect();
         int maxWidth = 0;
         for(int i=0; i<mYScaleNum; i++) {
-            text = String.valueOf((int)(mMinValue + perValue * i));
+            text = String.valueOf((int)(mMinValue + mPerValue * i));
             mYScaleTexts.add(text);
             mYScaleTextPaint.getTextBounds(text, 0, text.length(), rect);
             if(maxWidth < rect.width()) {
@@ -126,7 +127,7 @@ public class LineChart extends View {
     private void initDatas() {
         mXScaleTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mXScaleTextPaint.setColor(mXScaleTextColor);
-        mXScaleTextPaint.setTextSize(Utils.sp2px(mContext, 12f));
+        mXScaleTextPaint.setTextSize(Utils.sp2px(mContext, mValues.length > 9 ? 8f : 12f));
         mXScaleTextPaint.setTextAlign(Paint.Align.CENTER);
 
         mXScaleFontMetrics = mXScaleTextPaint.getFontMetricsInt();
@@ -333,7 +334,7 @@ public class LineChart extends View {
         int dialogWidth = mMaxYScaleWidth / 2;
         Point bottomPoint = calculateLocation(i, mValues[i]);
         Path path = new Path();
-        if(mValues[i] != mMaxValue) {
+        if((mMaxValue - mValues[i]) > mPerValue) {
             bottomPoint.y -= 8;
             path.moveTo(bottomPoint.x, bottomPoint.y);
             path.lineTo(bottomPoint.x + 15, bottomPoint.y - 20);
@@ -344,7 +345,7 @@ public class LineChart extends View {
             path.lineTo(bottomPoint.x - 15, bottomPoint.y - 20);
             path.close();
         } else {
-            bottomPoint.y += 13;
+            bottomPoint.y += 8;
             path.moveTo(bottomPoint.x, bottomPoint.y);
             path.lineTo(bottomPoint.x + 15, bottomPoint.y + 20);
             path.lineTo(bottomPoint.x + 15 + dialogWidth, bottomPoint.y + 20);
@@ -357,7 +358,7 @@ public class LineChart extends View {
         canvas.drawPath(path, mValuePointPaint);
 
         Rect rect = new Rect();
-        if(mValues[i] != mMaxValue) {
+        if((mMaxValue - mValues[i]) > mPerValue) {
             rect.left = bottomPoint.x - 15 - dialogWidth;
             rect.right = bottomPoint.x + 15 + dialogWidth;
             rect.top = bottomPoint.y - 20 - 35;

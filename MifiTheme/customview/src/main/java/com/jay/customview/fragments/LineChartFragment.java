@@ -10,6 +10,7 @@ import com.jay.customview.R;
 
 /**
  * Created by Jay on 2016/11/24.
+ * line chart fragment
  */
 
 public class LineChartFragment extends BaseFragment {

@@ -22,4 +22,11 @@
         <attr name="gradual_end_color"  format="color"/>
         <attr name="transparent_color"  format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="LineChart">
+        <attr name="x_scale_text_color" format="color"/>
+        <attr name="round_rect_color" format="color"/>
+        <attr name="value_point_color" format="color"/>
+        <attr name="y_scale_line_color" format="color"/>
+    </declare-styleable>
 </resources>

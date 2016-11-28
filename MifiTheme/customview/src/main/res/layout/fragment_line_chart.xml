@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <com.jay.customview.widgets.LineChart
+        app:x_scale_text_color="@color/personinfo_color_yellow"
+        app:round_rect_color="@color/colorAccent"
+        app:value_point_color="@color/bg_color_red"
+        app:y_scale_line_color="@color/bg_mode_weight"
         android:layout_marginTop="50dp"
         android:id="@+id/line_chart"
         android:layout_gravity="center_horizontal"

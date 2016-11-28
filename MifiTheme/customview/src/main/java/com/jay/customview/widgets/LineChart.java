@@ -1,6 +1,7 @@
 package com.jay.customview.widgets;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,6 +14,8 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.jay.customview.R;
 import com.jay.customview.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +96,7 @@ public class LineChart extends View {
     public LineChart(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        initAttrs();
+        initAttrs(attrs, defStyleAttr);
         initDatas();
         mMaxYScaleWidth = initYScaleTexts();
         mYScaleWidth = mMaxYScaleWidth + 20;
@@ -158,8 +161,14 @@ public class LineChart extends View {
     /**
      * init attrs from xml
      */
-    private void initAttrs() {
-        //perhaps tomorrow
+    private void initAttrs(AttributeSet attrs, int defStyleAttr) {
+        TypedArray ta = mContext.obtainStyledAttributes(attrs, R.styleable.LineChart, 0, defStyleAttr);
+        mXScaleTextColor = ta.getColor(R.styleable.LineChart_x_scale_text_color, 0xFF1674E9);
+        mRoundRectColor = ta.getColor(R.styleable.LineChart_round_rect_color, 0xFF10A9C4);
+        mValuePointColor = ta.getColor(R.styleable.LineChart_value_point_color, 0xFF17B56C);
+        mYScaleLineColor = ta.getColor(R.styleable.LineChart_y_scale_line_color, 0x33000000);
+
+        ta.recycle();
     }
 
     @Override
@@ -335,7 +344,7 @@ public class LineChart extends View {
             path.lineTo(bottomPoint.x - 15, bottomPoint.y - 20);
             path.close();
         } else {
-            bottomPoint.y += 8;
+            bottomPoint.y += 13;
             path.moveTo(bottomPoint.x, bottomPoint.y);
             path.lineTo(bottomPoint.x + 15, bottomPoint.y + 20);
             path.lineTo(bottomPoint.x + 15 + dialogWidth, bottomPoint.y + 20);

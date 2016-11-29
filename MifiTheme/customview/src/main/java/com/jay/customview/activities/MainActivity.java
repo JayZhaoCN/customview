@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.jay.customview.R;
+import com.jay.customview.fragments.AnimatableFragment;
 import com.jay.customview.fragments.BaseFragment;
 import com.jay.customview.fragments.CardViewFragment;
 import com.jay.customview.fragments.CustomProgressBarFragment;
@@ -41,6 +42,7 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
         mDatas.add("Tint");
         mDatas.add("CardView");
         mDatas.add("LineChart");
+        mDatas.add("Animatable");
     }
 
     @Override
@@ -101,6 +103,14 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
                        return;
                    }
                     replaceFragment(new LineChartFragment());
+                    dialog.dismiss();
+                } else if(mDatas.get(position).equals("Animatable")) {
+                    if(mBaseFragment != null && mBaseFragment instanceof AnimatableFragment) {
+                        Log.i(TAG, "AnimatableFragment already added!");
+                        dialog.dismiss();
+                        return;
+                    }
+                    replaceFragment(new AnimatableFragment());
                     dialog.dismiss();
                 }
             }

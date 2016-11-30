@@ -8,8 +8,6 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -21,7 +19,7 @@ import com.jay.customview.R;
  * pacman drawable
  */
 
-public class PacmanDrawable extends Drawable implements Animatable {
+public class PacmanDrawable extends MyAnimatableDrawable {
     private static final String TAG = "PacmanDrawable";
 
     private Rect mBounds;

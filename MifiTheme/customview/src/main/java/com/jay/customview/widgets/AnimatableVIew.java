@@ -15,8 +15,8 @@ import android.view.View;
 public class AnimatableView extends View {
     private static final String TAG = "AnimatableView";
 
-    private PacmanDrawable mPacmanDrawable;
     private Context mContext;
+    private MyAnimatableDrawable mAnimatableDrawable;
 
     public AnimatableView(Context context) {
         this(context, null);
@@ -28,28 +28,30 @@ public class AnimatableView extends View {
 
     public AnimatableView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mPacmanDrawable = new PacmanDrawable(context);
-        mPacmanDrawable.setCallback(this);
+    }
+
+    public void setAnimatableDrawable(MyAnimatableDrawable animatableDrawable) {
+        this.mAnimatableDrawable = animatableDrawable;
+        mAnimatableDrawable.setCallback(this);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mPacmanDrawable.setBounds(0, 0, w, h);
+        mAnimatableDrawable.setBounds(0, 0, w, h);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         Log.i(TAG, "onDraw");
         super.onDraw(canvas);
-        mPacmanDrawable.draw(canvas);
-        mPacmanDrawable.start();
-
+        mAnimatableDrawable.start();
+        mAnimatableDrawable.draw(canvas);
     }
 
     @Override
     protected boolean verifyDrawable(Drawable who) {
-        return who == mPacmanDrawable
+        return who == mAnimatableDrawable
                 || super.verifyDrawable(who);
     }
 }

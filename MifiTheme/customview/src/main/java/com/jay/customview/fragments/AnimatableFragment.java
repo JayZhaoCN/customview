@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.jay.customview.R;
+import com.jay.customview.widgets.AnimatableView;
 import com.jay.customview.widgets.PacmanDrawable;
+import com.jay.customview.widgets.VerticalLineScaleDrawable;
 
 /**
  * Created by Jay on 2016/11/29.
@@ -22,7 +24,17 @@ public class AnimatableFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getLayout(), container, false);
+        View view = inflater.inflate(getLayout(), container, false);
+
+        if(view != null) {
+            AnimatableView animatableView1 = (AnimatableView) view.findViewById(R.id.animatable_view_1);
+            animatableView1.setAnimatableDrawable(new PacmanDrawable(getActivity()));
+
+            AnimatableView animatableView2 = (AnimatableView) view.findViewById(R.id.animatable_view_2);
+            animatableView2.setAnimatableDrawable(new VerticalLineScaleDrawable(getActivity()));
+        }
+
+        return view;
     }
 
     @Override

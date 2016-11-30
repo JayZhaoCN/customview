@@ -12,6 +12,7 @@ import com.jay.customview.widgets.PacmanDrawable;
 
 /**
  * Created by Jay on 2016/11/29.
+ * animatable fragment
  */
 
 public class AnimatableFragment extends BaseFragment {
@@ -21,17 +22,7 @@ public class AnimatableFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayout(), container, false);
-        if(view != null) {
-            ImageView img = (ImageView) view.findViewById(R.id.img);
-            PacmanDrawable pacmanDrawable = new PacmanDrawable(getActivity());
-            img.setImageDrawable(pacmanDrawable);
-            pacmanDrawable.start();
-
-            pacmanDrawable.setAlpha(25);
-        }
-
-        return view;
+        return inflater.inflate(getLayout(), container, false);
     }
 
     @Override

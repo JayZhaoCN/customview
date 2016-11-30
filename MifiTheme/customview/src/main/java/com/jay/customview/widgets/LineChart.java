@@ -95,6 +95,7 @@ public class LineChart extends View {
 
     public LineChart(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        Log.i(TAG, "construct");
         mContext = context;
         initAttrs(attrs, defStyleAttr);
         initDatas();
@@ -174,6 +175,7 @@ public class LineChart extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        Log.i(TAG, "onSizeChanged");
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
@@ -192,6 +194,7 @@ public class LineChart extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.i(TAG, "onDraw");
         super.onDraw(canvas);
 
         //draw y scale text

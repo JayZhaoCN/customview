@@ -62,6 +62,8 @@ public class PacmanDrawable extends Drawable implements Animatable {
         }
     }
 
+
+
     private void initAnimator() {
 
         if(mAnimator == null) {
@@ -80,7 +82,7 @@ public class PacmanDrawable extends Drawable implements Animatable {
 
         if(mCircleTranslateAnimator == null) {
             //TODO how to get the size of drawable?
-            mCircleTranslateAnimator = ValueAnimator.ofInt(300 - 50, 150 + 24);
+            mCircleTranslateAnimator = ValueAnimator.ofInt(getWidth()- 50, 150 + 24);
             mCircleTranslateAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -111,6 +113,7 @@ public class PacmanDrawable extends Drawable implements Animatable {
 
     @Override
     public void stop() {
+        Log.i(TAG, "stop");
         stopAnimators();
     }
 
@@ -139,6 +142,9 @@ public class PacmanDrawable extends Drawable implements Animatable {
         Log.i(TAG, "draw");
         float x = getWidth() / 2;
         float y = getHeight() / 2;
+
+        //main thread
+        Log.i(TAG, "current thread is: " + Thread.currentThread());
 
         canvas.save();
         mPaint.setAlpha(255);

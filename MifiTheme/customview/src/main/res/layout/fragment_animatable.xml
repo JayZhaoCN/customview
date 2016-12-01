@@ -4,15 +4,17 @@
     android:layout_height="match_parent">
 
     <com.jay.customview.widgets.AnimatableView
+        android:layout_marginTop="20dp"
         android:id="@+id/animatable_view_1"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"  />
 
 
     <com.jay.customview.widgets.AnimatableView
-        android:layout_marginStart="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="240dp"
         android:id="@+id/animatable_view_2"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_width="50dp"
+        android:layout_height="40dp" />
 
 </LinearLayout>

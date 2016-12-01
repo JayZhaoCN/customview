@@ -8,11 +8,8 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.jay.customview.R;
 
@@ -66,7 +63,6 @@ public class VerticalLineScaleDrawable extends MyAnimatableDrawable {
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-                    Log.i(TAG, "scale: " + animation.getAnimatedValue());
                     mScale[finalI] = (float) animation.getAnimatedValue();
                     if(finalI == 0) {
                         invalidateSelf();
@@ -121,7 +117,7 @@ public class VerticalLineScaleDrawable extends MyAnimatableDrawable {
             rectF.right = rectF.left + perScale;
             rectF.top = (getHeight() / 2 - currentHeight / 2);
             rectF.bottom = rectF.top + currentHeight;
-            canvas.drawRoundRect(rectF, 10, 10, mPaint);
+            canvas.drawRoundRect(rectF, 7, 7, mPaint);
         }
     }
 

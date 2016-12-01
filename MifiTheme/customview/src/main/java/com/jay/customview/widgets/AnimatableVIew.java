@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 /**
@@ -43,7 +42,6 @@ public class AnimatableView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.i(TAG, "onDraw");
         super.onDraw(canvas);
         mAnimatableDrawable.start();
         mAnimatableDrawable.draw(canvas);

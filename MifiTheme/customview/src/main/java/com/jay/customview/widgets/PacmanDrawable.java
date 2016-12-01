@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.animation.DecelerateInterpolator;
 
 import com.jay.customview.R;
 
@@ -80,7 +81,7 @@ public class PacmanDrawable extends MyAnimatableDrawable {
 
         if(mCircleTranslateAnimator == null) {
             //TODO how to get the size of drawable?
-            mCircleTranslateAnimator = ValueAnimator.ofInt(getWidth()- 50, 150 + 24);
+            mCircleTranslateAnimator = ValueAnimator.ofInt((int)(getWidth() * 0.86), getWidth() / 2 + 24);
             mCircleTranslateAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -88,6 +89,7 @@ public class PacmanDrawable extends MyAnimatableDrawable {
                     invalidateSelf();
                 }
             });
+            mCircleTranslateAnimator.setInterpolator(new DecelerateInterpolator());
             mCircleTranslateAnimator.setRepeatCount(ValueAnimator.INFINITE);
             mCircleTranslateAnimator.setDuration(ANIMATOR_DURATION*2);
             mCircleTranslateAnimator.setRepeatMode(ValueAnimator.RESTART);
@@ -152,7 +154,7 @@ public class PacmanDrawable extends MyAnimatableDrawable {
         canvas.restore();
 
         mPaint.setAlpha(mAlpha);
-        canvas.drawCircle(mTranslateX, getHeight() / 2, 20, mPaint);
+        canvas.drawCircle(mTranslateX, getHeight() / 2, getWidth() / 15, mPaint);
     }
 
     @Override

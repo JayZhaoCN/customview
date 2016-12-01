@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.jay.customview.R;
+import com.jay.customview.utils.TintUtils;
 
 /**
  * Created by Jay on 2016/11/14.
@@ -52,6 +53,7 @@ public class TintFragment extends BaseFragment {
         //DrawableCompat类：是Drawable的向下兼容类，为了在6.0以下兼容tint属性而使用的。
 
         //代码设置selector tint，6.0以下可以使用
+        /*
         if(view != null) {
             ImageView imageView = (ImageView) view.findViewById(R.id.image1);
             Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.step_new_record);
@@ -67,6 +69,13 @@ public class TintFragment extends BaseFragment {
             drawable = DrawableCompat.wrap(state == null ? stateListDrawable : state.newDrawable()).mutate();
             DrawableCompat.setTintList(drawable, colorList);
             imageView.setImageDrawable(drawable);
+        }
+        */
+
+        if(view != null) {
+            ImageView img = (ImageView) view.findViewById(R.id.image1);
+            //img.setImageDrawable(TintUtils.setDrawableTint(getActivity(), R.drawable.step_new_record, R.color.colorPrimary));
+            img.setImageDrawable(TintUtils.getPressedDrawableResId(getActivity(), R.drawable.step_new_record, R.color.step_bg_drak, R.color.personinfo_color_yellow));
         }
 
 

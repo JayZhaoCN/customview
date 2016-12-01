@@ -16,7 +16,6 @@
         android:clickable="true"
         android:layout_margin="10dp"
         android:id="@+id/image1"
-        android:src="@drawable/step_new_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

@@ -13,7 +13,7 @@ import com.jay.customview.R;
  * card view fragment
  */
 
-public class CardViewFragment extends BaseFragment {
+public class MaterialMenuFragment extends BaseFragment {
 
     @Nullable
     @Override
@@ -23,6 +23,6 @@ public class CardViewFragment extends BaseFragment {
 
     @Override
     public int getLayout() {
-        return R.layout.fragment_card_view;
+        return R.layout.fragment_material_menu;
     }
 }

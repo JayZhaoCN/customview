@@ -1,20 +1,25 @@
 package com.jay.customview.activities;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 
 import com.jay.customview.R;
 import com.jay.customview.fragments.AnimatableFragment;
 import com.jay.customview.fragments.BaseFragment;
-import com.jay.customview.fragments.CardViewFragment;
+import com.jay.customview.fragments.MaterialMenuFragment;
 import com.jay.customview.fragments.CustomProgressBarFragment;
 import com.jay.customview.fragments.CustomTypefaceFragment;
 import com.jay.customview.fragments.LineChartFragment;
 import com.jay.customview.fragments.TintFragment;
+import com.jay.customview.utils.CustomTypeface;
+import com.jay.customview.utils.CustomTypefaceBuilder;
+import com.jay.customview.utils.Font;
 import com.jay.customview.widgets.MyAlertDialog;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +45,13 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
         mDatas.add("CustomProgressBar");
         mDatas.add("CustomTypeface");
         mDatas.add("Tint");
-        mDatas.add("CardView");
+        mDatas.add("MaterialDesign");
         mDatas.add("LineChart");
-        mDatas.add("Animatable");
+        mDatas.add("LoadingAnimation");
+
+        setTitleText("CustomTypeface");
+
+        replaceFragment(new CustomTypefaceFragment());
     }
 
     @Override
@@ -57,15 +66,20 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
         }
     }
 
+    private void setTitleText(String title) {
+        CustomTypefaceBuilder builder = new CustomTypefaceBuilder(MainActivity.this);
+        builder.append(title, new CustomTypeface(Font.PT_DIN, ContextCompat.getColor(MainActivity.this, R.color.white_70_percent), 18));
+        setTitle(builder.build());
+    }
+
     private void showDialog() {
         MyAlertDialog alertDialog = new MyAlertDialog(MainActivity.this, mDatas);
-
         final Dialog dialog = alertDialog.getDialog();
         alertDialog.setOnItemClickListener(new MyAlertDialog.MyOnItemClickListener() {
             @Override
             public void onClick(int position) {
                 Log.i(TAG, "position is: " + position);
-                setTitle(mDatas.get(position));
+               setTitleText(mDatas.get(position));
                 if(mDatas.get(position).equals("CustomProgressBar")) {
                     if(mBaseFragment != null && mBaseFragment instanceof CustomProgressBarFragment) {
                         //already added
@@ -87,14 +101,14 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
                     }
                     replaceFragment(new TintFragment());
                     dialog.dismiss();
-                } else if(mDatas.get(position).equals("CardView")) {
-                    if(mBaseFragment != null && mBaseFragment instanceof CardViewFragment) {
+                } else if(mDatas.get(position).equals("MaterialDesign")) {
+                    if(mBaseFragment != null && mBaseFragment instanceof MaterialMenuFragment) {
                         //already added
-                        Log.i(TAG, "TintFragment already added!");
+                        Log.i(TAG, "MaterialMenuFragment already added!");
                         dialog.dismiss();
                         return;
                     }
-                    replaceFragment(new CardViewFragment());
+                    replaceFragment(new MaterialMenuFragment());
                     dialog.dismiss();
                 } else if(mDatas.get(position).equals("LineChart")) {
                    if(mBaseFragment != null && mBaseFragment instanceof LineChartFragment) {
@@ -104,7 +118,7 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
                    }
                     replaceFragment(new LineChartFragment());
                     dialog.dismiss();
-                } else if(mDatas.get(position).equals("Animatable")) {
+                } else if(mDatas.get(position).equals("LoadingAnimation")) {
                     if(mBaseFragment != null && mBaseFragment instanceof AnimatableFragment) {
                         Log.i(TAG, "AnimatableFragment already added!");
                         dialog.dismiss();

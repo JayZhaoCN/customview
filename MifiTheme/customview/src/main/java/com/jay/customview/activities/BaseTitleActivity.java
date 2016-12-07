@@ -65,7 +65,7 @@ public class BaseTitleActivity extends FragmentActivity {
      * 设置Activity的标题
      * @param title 标题
      */
-    public void setTitle(String title) {
+    public void setTitle(CharSequence title) {
         mTitleText.setText(title);
     }
 
@@ -177,10 +177,10 @@ public class BaseTitleActivity extends FragmentActivity {
     public void initAnimator() {
         if(mColorAnimator == null) {
             //invoke ValueAnimator.ofArgb(int ...values) to do some animation of colors
-            mColorAnimator = ValueAnimator.ofInt(ContextCompat.getColor(this, R.color.colorPrimary),
-                    ContextCompat.getColor(this, R.color.colorAccent),
-                    ContextCompat.getColor(this, R.color.bg_color_blue_dark),
-                    ContextCompat.getColor(this, R.color.fragment_divider_color));
+            mColorAnimator = ValueAnimator.ofInt(ContextCompat.getColor(this, R.color.titlebar_bg_color),
+                    ContextCompat.getColor(this, R.color.heart_rate_dark),
+                    ContextCompat.getColor(this, R.color.user_agreement_text),
+                    ContextCompat.getColor(this, R.color.sleep_bg));
 
             mColorAnimator.setEvaluator(new ArgbEvaluator());
             mColorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

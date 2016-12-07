@@ -59,6 +59,13 @@ public class CustomTypefaceFragment extends BaseFragment {
                             new CustomTypeface(Font.PT_DIN, ContextCompat.getColor(getActivity(), R.color.device_shoes_bg), 40));
 
             text2.setText(builder2.build());
+
+            TextView text4 = (TextView) view.findViewById(R.id.text4);
+            builder2.clear();
+            builder2.append("Click on ", new CustomTypeface(Font.DIN_MED, ContextCompat.getColor(getActivity(), R.color.blue_dark), 20))
+                    .append(" the upper right corner", new CustomTypeface(Font.PT_DIN, ContextCompat.getColor(getActivity(), R.color.colorPrimary), 30))
+                    .append(" to see more", new CustomTypeface(Font.DIN_MED, ContextCompat.getColor(getActivity(), R.color.colorAccent), 12));
+            text4.setText(builder2.build());
         }
 
         return view;

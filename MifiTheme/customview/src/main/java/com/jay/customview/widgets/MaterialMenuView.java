@@ -1,8 +1,10 @@
 package com.jay.customview.widgets;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -10,17 +12,20 @@ import com.jay.customview.R;
 
 /**
  * Created by Jay on 2016/12/8.
+ * material menu
  */
 
 public class MaterialMenuView extends View {
-    private static final String TAG = "MaterialMenuView";
 
-    private Context mContext;
     private MaterialMenuDrawable mDrawable;
 
     private int mIndex = 0;
 
-    private MaterialMenuDrawable.State[] states = {MaterialMenuDrawable.State.ARROW, MaterialMenuDrawable.State.BURGER, MaterialMenuDrawable.State.CHECK, MaterialMenuDrawable.State.BURGER};
+    private MaterialMenuDrawable.State[] states = {MaterialMenuDrawable.State.X, MaterialMenuDrawable.State.BURGER};
+
+    public void setPossibleState(MaterialMenuDrawable.State ... states) {
+        this.states = states;
+    }
 
     public MaterialMenuView(Context context) {
         this(context, null);
@@ -32,7 +37,12 @@ public class MaterialMenuView extends View {
 
     public MaterialMenuView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mDrawable = new MaterialMenuDrawable(context, R.color.blue_dark);
+
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MaterialMenuView, 0, defStyleAttr);
+        int lineColor = ta.getColor(R.styleable.MaterialMenuView_line_color, ContextCompat.getColor(context, R.color.blue_light));
+        ta.recycle();
+
+        mDrawable = new MaterialMenuDrawable(context, lineColor);
         mDrawable.setCallback(this);
     }
 
@@ -51,7 +61,7 @@ public class MaterialMenuView extends View {
     public void changeState() {
         mDrawable.setState(states[mIndex]);
         mIndex ++;
-        mIndex = mIndex % 4;
+        mIndex = mIndex % states.length;
     }
 
     @Override

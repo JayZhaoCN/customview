@@ -24,6 +24,10 @@ public class MaterialMenuFragment extends BaseFragment {
         View view =inflater.inflate(getLayout(), container, false);
         if(view != null) {
             final MaterialMenuView materialMenuView = (MaterialMenuView) view.findViewById(R.id.material_view);
+
+            //设置可变换的状态
+            materialMenuView.setPossibleState(MaterialMenuDrawable.State.X, MaterialMenuDrawable.State.BURGER, MaterialMenuDrawable.State.CHECK, MaterialMenuDrawable.State.BURGER);
+
             materialMenuView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

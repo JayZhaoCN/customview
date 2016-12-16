@@ -20,16 +20,11 @@
 
     </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
-        app:cardCornerRadius="5dp"
+    <com.jay.customview.widgets.MaterialMenuView
         android:layout_marginStart="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/material_view"
+        app:line_color="@color/blue_dark"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 
-        <com.jay.customview.widgets.MaterialMenuView
-            android:id="@+id/material_view"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
-
-    </android.support.v7.widget.CardView>
 </LinearLayout>

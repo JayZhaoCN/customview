@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.jay.customview.R;
 import com.jay.customview.widgets.MaterialMenuDrawable;

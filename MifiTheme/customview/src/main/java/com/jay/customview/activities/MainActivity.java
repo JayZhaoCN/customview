@@ -3,6 +3,7 @@ package com.jay.customview.activities;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -52,6 +53,16 @@ public class MainActivity extends BaseTitleActivity implements View.OnClickListe
         setTitleText("CustomTypeface");
 
         replaceFragment(new CustomTypefaceFragment());
+
+        //snackbar
+        Snackbar.make(findViewById(R.id.fragment_container), "Snackbar", Snackbar.LENGTH_LONG)
+                .setAction("Snackbar", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.i(TAG, "snackbar clicked.");
+                    }
+                })
+                .show();
     }
 
     @Override

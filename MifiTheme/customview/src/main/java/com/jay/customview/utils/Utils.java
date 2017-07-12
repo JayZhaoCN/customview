@@ -27,6 +27,11 @@ public class Utils {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, metrics);
     }
 
+    public static float dp2px(Context context, float dp) {
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
+    }
+
     public static boolean isMIUI() {
         try {
             final BuildProperties prop = BuildProperties.newInstance();

@@ -34,4 +34,13 @@
         <attr name="line_color" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="JayProgressView">
+        <attr name="progress_color" format="color"/>
+        <attr name="text_color" format="color"/>
+        <attr name="disable_color" format="color"/>
+        <attr name="bubble_color" format="color"/>
+        <attr name="slider_height" format="dimension"/>
+        <attr name="movable" format="boolean"/>
+    </declare-styleable>
+
 </resources>

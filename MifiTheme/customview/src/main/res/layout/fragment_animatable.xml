@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.jay.customview.widgets.AnimatableView
-        android:layout_marginTop="20dp"
         android:id="@+id/animatable_view_1"
         android:layout_width="60dp"
-        android:layout_height="60dp"  />
-
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"/>
 
     <com.jay.customview.widgets.AnimatableView
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="240dp"
         android:id="@+id/animatable_view_2"
-        android:layout_width="50dp"
-        android:layout_height="40dp" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"/>
+
+    <com.jay.customview.widgets.CoolLoadingView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <com.jay.customview.widgets.JayProgressView
+        android:id="@+id/progress_view"
+        app:slider_height="8dp"
+        app:movable="true"
+        android:layout_width="260dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"/>
 
 </LinearLayout>

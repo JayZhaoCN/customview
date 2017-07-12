@@ -17,6 +17,7 @@ import android.view.View;
 
 import com.jay.customview.R;
 import com.jay.customview.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,11 +114,11 @@ public class LineChart extends View {
         String text;
         Rect rect = new Rect();
         int maxWidth = 0;
-        for(int i=0; i<mYScaleNum; i++) {
-            text = String.valueOf((int)(mMinValue + mPerValue * i));
+        for (int i = 0; i < mYScaleNum; i++) {
+            text = String.valueOf((int) (mMinValue + mPerValue * i));
             mYScaleTexts.add(text);
             mYScaleTextPaint.getTextBounds(text, 0, text.length(), rect);
-            if(maxWidth < rect.width()) {
+            if (maxWidth < rect.width()) {
                 maxWidth = rect.width();
             }
         }
@@ -187,8 +188,8 @@ public class LineChart extends View {
 
 
         mYScaleTargetRects = new ArrayList<>();
-        for(int i=0; i<mYScaleNum; i++) {
-            mYScaleTargetRects.add(new Rect(0, mYScalePerHeight - mYScaleHeight / 2 + mYScalePerHeight *i, mMaxYScaleWidth, mYScalePerHeight + mYScaleHeight / 2 + mYScalePerHeight *i));
+        for (int i = 0; i < mYScaleNum; i++) {
+            mYScaleTargetRects.add(new Rect(0, mYScalePerHeight - mYScaleHeight / 2 + mYScalePerHeight * i, mMaxYScaleWidth, mYScalePerHeight + mYScaleHeight / 2 + mYScalePerHeight * i));
         }
     }
 
@@ -213,11 +214,11 @@ public class LineChart extends View {
     private void drawYScaleText(Canvas canvas) {
         canvas.drawLine(mYScaleWidth, 0, mYScaleWidth, mHeight - mXScaleHeight, mScaleLinePaint);
 
-        for(int i=1; i<mYScaleNum + 1; i++) {
+        for (int i = 1; i < mYScaleNum + 1; i++) {
             canvas.drawLine(mYScaleWidth, mYScalePerHeight * i, mYScaleWidth - 5, mYScalePerHeight * i, mScaleLinePaint);
             canvas.drawText
                     (mYScaleTexts.get(mYScaleNum - i), mMaxYScaleWidth,
-                            (mYScaleTargetRects.get(i-1).bottom + mYScaleTargetRects.get(i-1).top - mYScaleFontMetrics.bottom - mYScaleFontMetrics.top) / 2, mYScaleTextPaint);
+                            (mYScaleTargetRects.get(i - 1).bottom + mYScaleTargetRects.get(i - 1).top - mYScaleFontMetrics.bottom - mYScaleFontMetrics.top) / 2, mYScaleTextPaint);
         }
     }
 
@@ -226,7 +227,7 @@ public class LineChart extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
                 int index;
-                if(event.getY() > mHeight - mXScaleHeight) {
+                if (event.getY() > mHeight - mXScaleHeight) {
                     Log.i(TAG, "XScaleArea");
                     if ((index = judgeTouchArea(event.getX(), event.getY())) != -1) {
                         mSelectedIndex = index;
@@ -234,7 +235,7 @@ public class LineChart extends View {
                     }
                 } else {
                     Log.i(TAG, "ChartArea");
-                    if((index = judgeChartPointTouchArea(event.getX(), event.getY())) != -1) {
+                    if ((index = judgeChartPointTouchArea(event.getX(), event.getY())) != -1) {
                         mSelectedIndex = index;
                         invalidate();
                     }
@@ -246,13 +247,13 @@ public class LineChart extends View {
 
     private int judgeChartPointTouchArea(float x, float y) {
         Rect rect = new Rect();
-        for(int i=0; i<mValues.length; i++) {
+        for (int i = 0; i < mValues.length; i++) {
             Point point = calculateLocation(i, mValues[i]);
             rect.left = point.x - 35;
             rect.right = point.x + 35;
             rect.top = point.y - 35;
             rect.bottom = point.y + 35;
-            if(rect.contains((int)x, (int)y)) {
+            if (rect.contains((int) x, (int) y)) {
                 return i;
             }
         }
@@ -326,7 +327,7 @@ public class LineChart extends View {
                 point.y += 8;
             }
             canvas.drawCircle(point.x, point.y, 8, mValuePointPaint);
-            if(i != 0) {
+            if (i != 0) {
                 canvas.drawLine(originPoint.x, originPoint.y, point.x, point.y, mLinesPaint);
                 originPoint = point;
             }
@@ -337,7 +338,7 @@ public class LineChart extends View {
         int dialogWidth = mMaxYScaleWidth / 2;
         Point bottomPoint = calculateLocation(i, mValues[i]);
         Path path = new Path();
-        if((mMaxValue - mValues[i]) > mPerValue) {
+        if ((mMaxValue - mValues[i]) > mPerValue) {
             bottomPoint.y -= 8;
             path.moveTo(bottomPoint.x, bottomPoint.y);
             path.lineTo(bottomPoint.x + 15, bottomPoint.y - 20);
@@ -361,7 +362,7 @@ public class LineChart extends View {
         canvas.drawPath(path, mValuePointPaint);
 
         Rect rect = new Rect();
-        if((mMaxValue - mValues[i]) > mPerValue) {
+        if ((mMaxValue - mValues[i]) > mPerValue) {
             rect.left = bottomPoint.x - 15 - dialogWidth;
             rect.right = bottomPoint.x + 15 + dialogWidth;
             rect.top = bottomPoint.y - 20 - 35;
@@ -383,7 +384,7 @@ public class LineChart extends View {
      * calculate the location of a value
      *
      * @param xIndex x轴刻度位置
-     * @param value 值
+     * @param value  值
      */
     private Point calculateLocation(int xIndex, int value) {
         float yScale = (float) (mHeight - mXScaleHeight - mPointSuspendX) / (float) (mMaxValue - mMinValue);
